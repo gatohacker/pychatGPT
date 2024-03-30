@@ -1,4 +1,4 @@
-# Servidor Web de ChatGPT y Lector de Logs
+# Servidor Web de API ChatGPT y Lector de Logs
 
 Este proyecto consiste en un servidor web de ChatGPT implementado en Python que guarda logs de conversaciones y un lector de esos logs.
 
@@ -16,6 +16,8 @@ El lector de logs permite visualizar las conversaciones previamente almacenadas 
 
 ## Requisitos
 
+Python: Necesitarás tener Python instalado en tu sistema. Puedes descargar la última versión desde python.org/downloads.
+
 Este proyecto utiliza las siguientes bibliotecas externas. Debes instalarlas utilizando pip:
 
 - tkinter
@@ -25,8 +27,6 @@ Este proyecto utiliza las siguientes bibliotecas externas. Debes instalarlas uti
 - subprocess
 - openai
 - flask
-
-## Instalación
 
 Puedes instalar las bibliotecas externas necesarias utilizando pip. Abre una terminal y ejecuta los siguientes comandos uno por uno:
 
