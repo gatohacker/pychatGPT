@@ -1,3 +1,4 @@
+`#000000`
 # Servidor Web de ChatGPT y Lector de Logs
 
 Este proyecto consiste en un servidor web de ChatGPT implementado en Python que guarda logs de conversaciones y un lector de esos logs.
