@@ -37,6 +37,7 @@ pip install inquirer
 pip install configparser
 pip install openai==0.28.0
 pip install flask
+```bash
 
 ## Uso
 
