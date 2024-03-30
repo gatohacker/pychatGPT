@@ -35,7 +35,7 @@ pip install tkinter
 pip install colorama
 pip install inquirer
 pip install configparser
-pip install openai==0.28.0
+pip install openai
 pip install flask
 ```
 
