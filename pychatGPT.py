@@ -19,12 +19,11 @@ def configurar_server():
         api_key = input("Ingresa tu API key: ").strip()
 
     engine_choices = [
-        "gpt-3.5-turbo-0125",
-        "gpt-4-32k",
+        "gpt-4-turbo-preview",
         "gpt-4",
-        "gpt-4-1106-vision-preview",
-        "gpt-4-1106-preview",
-        "gpt-4-0125-preview"
+        "gpt-3.5-turbo-16k",
+        "gpt-3.5-turbo-0125",
+        "gpt-3.5-turbo"
     ]
     engine = inquirer.prompt([
         inquirer.List('engine',
@@ -33,7 +32,7 @@ def configurar_server():
                       ),
     ])['engine']
 
-    max_tokens = input("Ingresa el valor de max tokens (deja vacío para usar el valor por defecto de 150): ").strip() or "150"
+    max_tokens = input("Ingresa el valor de max tokens (deja vacío para usar el valor por defecto de 256): ").strip() or "256"
     temperature = input("Ingresa el valor de temperature (deja vacío para usar el valor por defecto de 0.7): ").strip() or "0.7"
     frequency_penalty = input("Ingresa el valor de frequency penalty (deja vacío para usar el valor por defecto de 0.2): ").strip() or "0.2"
 
