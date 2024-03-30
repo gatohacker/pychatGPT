@@ -1,10 +1,10 @@
-import openai
-from flask import Flask, render_template, request
+import os
 import re
 import csv
 import datetime
-import os
 import configparser
+from flask import Flask, render_template, request
+from openai import OpenAI, ChatCompletion
 
 # Inicializa la aplicación Flask
 app = Flask(__name__)
@@ -34,9 +34,11 @@ def escribir_en_csv(mensaje, rol, nombre_archivo):
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-# Configura tu API Key de OpenAI y el motor
-openai.api_key = config.get('openai', 'api_key')
-engine = config.get('openai', 'engine')
+# Configura tu API Key de OpenAI
+api_key = config.get('openai', 'api_key')
+
+# Configura el cliente de OpenAI
+openai = OpenAI(api_key=api_key)
 
 # Configuración adicional para la API de OpenAI desde config.ini:
 configuracion_openai = {
@@ -67,14 +69,14 @@ def chat():
     conversacion_estado['mensajes'].append({'role': 'user', 'content': entrada_usuario})
 
     # Realiza la solicitud a la API de ChatGPT
-    respuesta = openai.ChatCompletion.create(
-        model=engine, 
-        messages=conversacion_estado['mensajes'], 
+    respuesta = openai.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=conversacion_estado['mensajes'],
         **configuracion_openai  # Pasa todas las configuraciones adicionales aquí
     )
 
     # Obtiene la respuesta generada por ChatGPT
-    respuesta_chat = respuesta['choices'][0]['message']['content'].strip()
+    respuesta_chat = respuesta.choices[0].message.content.strip()
 
     # Convierte comillas invertidas en etiquetas <code>
     respuesta_chat = convertir_code(respuesta_chat)
