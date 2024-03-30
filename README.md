@@ -1,17 +1,17 @@
-# Servidor Web de ChatGPT y Lector de Logs
+Servidor Web de ChatGPT y Lector de Logs
 Este proyecto consiste en un servidor web de ChatGPT implementado en Python que guarda logs de conversaciones y un lector de esos logs.
 
-# Descripción
+Descripción
 El objetivo de este proyecto es proporcionar una interfaz web simple para interactuar con el modelo de lenguaje GPT (Generative Pre-trained Transformer) de OpenAI, comúnmente conocido como ChatGPT. Además, el servidor web guarda las conversaciones en un archivo de registro (log) con día, fecha y hora para su posterior lectura.
 
 El lector de logs permite visualizar las conversaciones previamente almacenadas en los logs, con chats coloreados, facilitando el seguimiento de interacciones pasadas.
 
-## Funcionalidades
+Funcionalidades
 Servidor web de ChatGPT: Proporciona una interfaz web para interactuar con el modelo de lenguaje GPT.
 Guardado de logs: Almacena las conversaciones en un archivo de registro para su posterior revisión.
 Lector de logs: Permite visualizar las conversaciones previamente almacenadas en los logs.
 
-## Requisitos
+Requisitos
 
 Este proyecto utiliza las siguientes bibliotecas externas. Debes instalarlas utilizando pip:
 
@@ -23,7 +23,7 @@ subprocess
 openai
 flask
 
-## Instalación
+Instalación
 
 Puedes instalar las bibliotecas externas necesarias utilizando pip. Abre una terminal y ejecuta los siguientes comandos uno por uno:
 
@@ -36,7 +36,7 @@ pip install configparser
 pip install openai==0.28.0
 pip install flask
 
-## Uso
+Uso
 
 Para utilizar el servidor web de ChatGPT y el lector de logs, sigue estos pasos:
 
@@ -48,9 +48,9 @@ Dentro de la carpeta templates, encontrarás un archivo index.html que puedes mo
 
 El archivo pychatGPT.py tiene un menú que te permite configurar el API key, el motor y otros datos necesarios para la ejecución del servidor.
 
-## Contribución
+Contribución
 
-# Si deseas contribuir a este proyecto, sigue estos pasos:
+Si deseas contribuir a este proyecto, sigue estos pasos:
 
 Haz un fork del repositorio.
 Crea una nueva rama (git checkout -b feature/nueva-caracteristica).
@@ -58,13 +58,13 @@ Realiza tus cambios y haz commits (git commit -am 'Añade nueva característica'
 Haz push a la rama (git push origin feature/nueva-caracteristica).
 Crea un Pull Request.
 
-## Licencia
+Licencia
 
 Este proyecto está bajo la Licencia Creative Commons No Comercial Sin Derivados (CC BY-NC-ND), lo que significa que puedes leer, compartir y utilizar el código libremente para fines no comerciales, siempre y cuando incluyas el aviso de copyright y la licencia en todas las copias o partes sustanciales del software. No se permite la venta del software sin permiso previo del titular de los derechos de autor. Este software se proporciona "tal cual", sin garantía de ningún tipo. Consulta el archivo LICENSE para obtener más detalles.
 
 Para obtener permiso para utilizar este software con fines comerciales o realizar modificaciones, contáctame para discutir la posibilidad de obtener una licencia adecuada.
 
-## Contacto
+Contacto
 
 Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto conmigo:
 
