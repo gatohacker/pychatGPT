@@ -30,14 +30,14 @@ Este proyecto utiliza las siguientes bibliotecas externas. Debes instalarlas uti
 
 Puedes instalar las bibliotecas externas necesarias utilizando pip. Abre una terminal y ejecuta los siguientes comandos uno por uno:
 
-```bash
+```
 pip install tkinter
 pip install colorama
 pip install inquirer
 pip install configparser
 pip install openai==0.28.0
 pip install flask
-```bash
+```
 
 ## Uso
 
