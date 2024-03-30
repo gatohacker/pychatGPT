@@ -1,4 +1,3 @@
-`#000000`
 # Servidor Web de ChatGPT y Lector de Logs
 
 Este proyecto consiste en un servidor web de ChatGPT implementado en Python que guarda logs de conversaciones y un lector de esos logs.
@@ -73,5 +72,5 @@ Para obtener permiso para utilizar este software con fines comerciales o realiza
 
 Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto conmigo:
 
-- Autor: GatoHacker
+- Autor: **GatoHacker**
 - E-Mail: gatohackeronline@gmail.com
