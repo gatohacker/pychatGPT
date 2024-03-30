@@ -50,7 +50,7 @@ El archivo pychatGPT.py tiene un menú que te permite configurar el API key, el 
 
 ## Contribución
 
-Si deseas contribuir a este proyecto, sigue estos pasos:
+# Si deseas contribuir a este proyecto, sigue estos pasos:
 
 Haz un fork del repositorio.
 Crea una nueva rama (git checkout -b feature/nueva-caracteristica).
