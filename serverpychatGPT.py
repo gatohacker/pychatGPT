@@ -15,13 +15,16 @@ conversacion_estado = {'mensajes': []}
 # Ruta al directorio de logs
 carpeta_logs = 'logs'
 
-# Función para convertir comillas invertidas en etiquetas <code>
+# Función para convertir comillas invertidas en etiquetas <code> con botón de copiar
 def convertir_code(mensaje):
     # Encuentra todos los bloques de código entre comillas invertidas
     bloques_code = re.findall(r'```(.*?)```', mensaje, re.DOTALL)
     for bloque in bloques_code:
-        # Reemplaza las comillas invertidas con etiquetas <code>
-        mensaje = mensaje.replace(f'```{bloque}```', f'<code>{bloque}</code>')
+        # Reemplaza las comillas invertidas con etiquetas <code> y el botón de copiar
+        mensaje = mensaje.replace(
+            f'```{bloque}```',
+            f'<div class="code-container"><code>{bloque}</code><button class="boton-copiar" onclick="copiarAlPortapapeles(this)">Copiar código</button></div>'
+        )
     return mensaje
 
 # Función para escribir en el archivo CSV

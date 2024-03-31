@@ -1,132 +1,165 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyChatGPT</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='imagenes/favicon.ico') }}">
-    
-    <!-- Hoja de estilos interna -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='estilos/estilo.css') }}">
-    
-    <!-- Descomentar para aplicar CSS al code por highlight.js 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PyChatGPT</title>
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='imagenes/favicon.ico') }}">
+        
+        <!-- Hoja de estilos interna -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='estilos/estilo.css') }}">
+        
+        <!-- Descomentar para aplicar CSS al code por highlight.js 
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/far.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/obsidian.min.css">
+        -->
+        
+        <!-- Hoja de estilos CSS al code por highlight.js -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/far.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/obsidian.min.css">
-    -->
-    
-    <!-- Hoja de estilos CSS al code por highlight.js -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-    
-    <!-- Fuente de Google -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    
-</head>
-<body>
-    
-    <h1>PyChatGPT</h1>
-    <div id="conversacion">
-        {% for mensaje in conversacion %}
-        {% if mensaje.role == 'user' %}
-        <p>
-            <span class="circulo"><img src="{{ url_for('static', filename='imagenes/corazon.svg') }}" alt="Usuario" class="icono-corazon"></span>
-            <strong>Usuario:</strong>
-            <pre class="mensaje-usuario">{{ mensaje.content | safe }}</pre>
-        </p>
-        {% elif mensaje.role == 'assistant' %}
-        <p>
-            <span class="circulo"><img src="{{ url_for('static', filename='imagenes/engranaje.svg') }}" alt="ChatGPT" class="icono-engranaje"></span>
-            <strong>ChatGPT:</strong>
-            <pre class="mensaje-asistente">{{ mensaje.content | safe }}</pre>
-        </p>
-        {% endif %}
-        {% endfor %}
-    </div>
-    
-    <div id="contenedor_formulario">
-        <form id="formulario-chat" action="/chat" method="post">
-            <textarea id="entrada_usuario" name="entrada_usuario" required placeholder="Haz una pregunta..."></textarea>
-            <br>
-            <input type="submit" value="Enviar" id="btn_enviar">
-        </form>
-    </div>
-    
-    
-    <!-- Flechas arriba abajo -->
-    <a href="#" class="flecha" onclick="scrollArriba()">&#9650;&#9660;</a>
-    
-    <!-- Mensaje de espera -->
-    <div id="mensaje-espera">Mensaje enviado, esperando respuesta...</div>
-    
-    <!-- Script para aplicar resaltado de sintaxis con highlight.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Aplicar el resaltado de sintaxis con highlight.js
-            hljs.highlightAll();
-        });
-    </script>
-    
-    <!-- Script flecha -->
-    <script>
-        function scrollArriba() {
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth'
+        
+        <!-- Fuente de Google -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+        
+    </head>
+    <body>
+        
+        <h1>PyChatGPT</h1>
+        <div id="conversacion">
+            {% for mensaje in conversacion %}
+            {% if mensaje.role == 'user' %}
+            <p>
+                <span class="circulo"><img src="{{ url_for('static', filename='imagenes/corazon.svg') }}" alt="Usuario" class="icono-corazon"></span>
+                <strong>Usuario:</strong>
+                <pre class="mensaje-usuario">{{ mensaje.content | safe }}</pre>
+            </p>
+            {% elif mensaje.role == 'assistant' %}
+            <p>
+                <span class="circulo"><img src="{{ url_for('static', filename='imagenes/engranaje.svg') }}" alt="ChatGPT" class="icono-engranaje"></span>
+                <strong>ChatGPT:</strong>
+                <pre class="mensaje-asistente">{{ mensaje.content | safe }}</pre>
+            </p>
+            {% endif %}
+            {% endfor %}
+        </div>
+        
+        <div id="contenedor_formulario">
+            <form id="formulario-chat" action="/chat" method="post">
+                <textarea id="entrada_usuario" name="entrada_usuario" required placeholder="Haz una pregunta..."></textarea>
+                <br>
+                <input type="submit" value="Enviar" id="btn_enviar">
+            </form>
+        </div>
+        
+        
+        <!-- Flechas arriba abajo -->
+        <a href="#" class="flecha" onclick="scrollArriba()">&#9650;&#9660;</a>
+        
+        <!-- Mensaje de espera -->
+        <div id="mensaje-espera">Mensaje enviado, esperando respuesta...</div>
+        
+        <!-- Mensaje botón copiar al portapapeles -->
+        <div id="mensaje-copiado" class="mensaje-copiado">¡El código ha sido copiado al portapapeles!</div>
+        
+        
+        <!-- Script para aplicar resaltado de sintaxis con highlight.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Aplicar el resaltado de sintaxis con highlight.js
+                hljs.highlightAll();
             });
-        }
-    </script>
-    
-    <!-- Script altura automática en entrada de usuario -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const entradaUsuario = document.getElementById('entrada_usuario');
-            const conversacion = document.getElementById('conversacion');
-            
-            entradaUsuario.addEventListener('input', function() {
-                this.style.height = ''; // Restablecer la altura
-                this.style.height = Math.min(entradaUsuario.scrollHeight, 350) + 'px'; // Limitar a 350px máximo
+        </script>
+        
+        <!-- Script flecha -->
+        <script>
+            function scrollArriba() {
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+        </script>
+        
+        <!-- Script altura automática en entrada de usuario -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const entradaUsuario = document.getElementById('entrada_usuario');
+                const conversacion = document.getElementById('conversacion');
                 
-                let nuevaAlturaConversacion = this.scrollHeight + 35; // Ajusta según tus necesidades
+                entradaUsuario.addEventListener('input', function() {
+                    this.style.height = ''; // Restablecer la altura
+                    this.style.height = Math.min(entradaUsuario.scrollHeight, 350) + 'px'; // Limitar a 350px máximo
+                    
+                    let nuevaAlturaConversacion = this.scrollHeight + 35; // Ajusta según tus necesidades
+                    
+                    conversacion.style.marginBottom = nuevaAlturaConversacion + 'px';
+                });
                 
-                conversacion.style.marginBottom = nuevaAlturaConversacion + 'px';
+                // Asegurarse de que inicialmente tenga una altura mínima de 80px
+                entradaUsuario.style.minHeight = '80px';
             });
-            
-            // Asegurarse de que inicialmente tenga una altura mínima de 80px
-            entradaUsuario.style.minHeight = '80px';
-        });
-    </script>
-    
-    <!-- Script mensaje de espera al enviar pregunta -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const entradaUsuario = document.getElementById('entrada_usuario');
-            const conversacion = document.getElementById('conversacion');
-            const mensajeEspera = document.getElementById('mensaje-espera'); // Nuevo
-
-            entradaUsuario.addEventListener('input', function() {
-                this.style.height = ''; // Restablecer la altura
-                this.style.height = Math.min(entradaUsuario.scrollHeight, 350) + 'px'; // Limitar a 350px máximo
-
-                let nuevaAlturaConversacion = this.scrollHeight + 35; // Ajusta según tus necesidades
-
-                conversacion.style.marginBottom = nuevaAlturaConversacion + 'px';
+        </script>
+        
+        <!-- Script mensaje de espera al enviar pregunta -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const entradaUsuario = document.getElementById('entrada_usuario');
+                const conversacion = document.getElementById('conversacion');
+                const mensajeEspera = document.getElementById('mensaje-espera'); // Nuevo
+                
+                entradaUsuario.addEventListener('input', function() {
+                    this.style.height = ''; // Restablecer la altura
+                    this.style.height = Math.min(entradaUsuario.scrollHeight, 350) + 'px'; // Limitar a 350px máximo
+                    
+                    let nuevaAlturaConversacion = this.scrollHeight + 35; // Ajusta según tus necesidades
+                    
+                    conversacion.style.marginBottom = nuevaAlturaConversacion + 'px';
+                });
+                
+                // Asegurarse de que inicialmente tenga una altura mínima de 80px
+                entradaUsuario.style.minHeight = '80px';
+                
+                // Mostrar el mensaje de espera al enviar el formulario
+                document.getElementById('formulario-chat').addEventListener('submit', function() {
+                    mensajeEspera.style.display = 'block';
+                });
             });
-
-            // Asegurarse de que inicialmente tenga una altura mínima de 80px
-            entradaUsuario.style.minHeight = '80px';
-
-            // Mostrar el mensaje de espera al enviar el formulario
-            document.getElementById('formulario-chat').addEventListener('submit', function() {
-                mensajeEspera.style.display = 'block';
-            });
-        });
-    </script>
-
-</body>
+        </script>
+        
+        <!-- Script mensaje copiado al portapapeles -->        
+        <script>
+            function copiarAlPortapapeles(elemento) {
+                // Obtener el contenido del código dentro del elemento <code>
+                var contenido = elemento.previousElementSibling.textContent;
+                
+                // Crear un elemento de textarea temporal para copiar el contenido
+                var textarea = document.createElement('textarea');
+                textarea.value = contenido;
+                
+                // Añadir el textarea al DOM
+                document.body.appendChild(textarea);
+                
+                // Seleccionar y copiar el contenido del textarea
+                textarea.select();
+                document.execCommand('copy');
+                
+                // Eliminar el textarea temporal del DOM
+                document.body.removeChild(textarea);
+                
+                // Mostrar el mensaje de copiado
+                var mensajeCopiado = document.getElementById('mensaje-copiado');
+                mensajeCopiado.style.display = 'block';
+                setTimeout(function() {
+                    mensajeCopiado.style.display = 'none';
+                }, 2000); // Ocultar el mensaje después de 2 segundos
+            }
+        </script>
+        
+    </body>
 </html>
